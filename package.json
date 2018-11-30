@@ -1,7 +1,7 @@
 {
   "name": "node-pgb-push",
   "version": "1.0.0",
-  "description": "Small helper script to automate uploading a zipped folder to Phonegap Build",
+  "description": "Small helper script to automate uploading a zipped folder to PhoneGap Build",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
