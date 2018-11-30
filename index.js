@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// UPDATE THESE VARIABLES
+// TODO: Arguments would be nicer, but this was born inside another project so couldn't be bothered
 const username = false,
   password = false,
   appid = false,
@@ -12,6 +14,8 @@ var client = require('phonegap-build-api'),
   e = require('debug')('error'),
   i = require('debug')('info');
 
+
+// Basic checks
 if(username === false || password === false || appid === false || buildFolder === false || buildTarget === false) {
   e('username,password,appid,buildfolder or buildtarget missing');
   return;
@@ -19,6 +23,7 @@ if(username === false || password === false || appid === false || buildFolder ==
 
 i('authenticating with phonegap');
 
+// Authenticate with the Phonegap Build API
 client.auth({ username: username, password: password }, function(err, api) {
   if(err){
     e(err);
@@ -30,6 +35,7 @@ client.auth({ username: username, password: password }, function(err, api) {
   var output = fs.createWriteStream(buildTarget);
   var archive = archiver('zip', { zlib: { level: 9 }});
 
+  // When the file is created, start piping and adding
   output.on('open', ()=>{
       i('adding contents');
       archive.pipe(output);
@@ -41,10 +47,12 @@ client.auth({ username: username, password: password }, function(err, api) {
     i('data drained');
   });
 
+  // When done
   output.on('close', ()=>{
     i(archive.pointer() + ' total bytes.');
 
     i('uploading...');
+    // Start uploading
     api.put(`/apps/${appid}`,{
       form: {
         data: {
