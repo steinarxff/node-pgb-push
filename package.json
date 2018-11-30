@@ -1,0 +1,17 @@
+{
+  "name": "node-pgb-push",
+  "version": "1.0.0",
+  "description": "Small helper script to automate uploading a zipped folder to Phonegap Build",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "DEBUG=* ./index.js"
+  },
+  "author": "Steinar Stølann | steinar (at) 21st.no",
+  "license": "MIT",
+  "dependencies": {
+    "archiver": "^3.0.0",
+    "debug": "^4.1.0",
+    "phonegap-build-api": "^1.0.0"
+  }
+}
